@@ -33,7 +33,7 @@ namespace EclecticXnet.Services
 				requestPlayListVideos.MaxResults = int.MaxValue;
 				requestPlayListVideos.PageToken = nextPageToken;
 
-				var responsePlayListVideos = requestPlayListVideos.Execute();
+				var responsePlayListVideos = await requestPlayListVideos.ExecuteAsync();
 				foreach (var responsePlayListVideo in responsePlayListVideos.Items)
 				{
 					var videoSnippet = responsePlayListVideo.Snippet;
