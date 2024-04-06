@@ -5,12 +5,71 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-    @foreach (var playlist in Model.PlayLists)
-    {
-        <section style="margin: 10px 0 10px 0;">
-            <img src="@playlist.ThumbnailUrl" />
-        </section>
-    }
+    <div id="carouselExampleCaptions" class="carousel slide carousel-fade">
+        <div class="carousel-indicators">
+            @{
+                int buttonCounter = 1;
+
+                @foreach (var playlist in Model.PlayLists)
+                {
+                    int backCounter = buttonCounter - 1;
+                    if (buttonCounter == 1)
+                    {
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide @buttonCounter"></button>
+                    }
+                    else
+                    {
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="@backCounter" aria-label="Slide @buttonCounter"></button>
+                    }
+
+                    buttonCounter++;
+                }
+            }
+        </div>
+        <div class="carousel-inner">
+            @{
+                int counter = 1;
+                foreach (var playlist in Model.PlayLists)
+                {
+                    string classes = counter == 1 ? "carousel-item active" : "carousel-item";
+
+                    string title = playlist.Title.ToUpperInvariant();
+
+                    string description = playlist.Description;
+                    int lengthMax = 75;
+                    if (description.Length > lengthMax)
+                    {
+                        description = description.Substring(0, lengthMax);
+                        int lastSpace = description.LastIndexOf(" ");
+                        description = description.Substring(0, lastSpace) + "...";
+                    }
+    
+                    <div class="@classes">
+                        <div class="position-absolute w-100 fa-10x mt-5 text-white-50" style="top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                            @*<i class="fa-solid fa-circle-info" aria-hidden="true" title="Read description."></i>*@
+                            <i class="fa-solid fa-eye" aria-hidden="true" title="Watch playlist videos."></i>
+                        </div>
+                        <img src="@playlist.ThumbnailUrl" class="d-block w-100" alt="@title" title="@title">
+                        @*<div class="carousel-caption d-none d-md-block bg-white text-black">
+                            <h3>
+                                @title
+                            </h3>
+                            <p class="lead text-black">
+                                @description
+                            </p>
+                        </div>*@
+                    </div>
+                    counter++;
+                }
+            }
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
 </div>

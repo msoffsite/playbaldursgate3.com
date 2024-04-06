@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="bootstrap" Version="5.3.3" />
     <PackageReference Include="Google.Apis.YouTube.v3" Version="1.67.0.3358" />
   </ItemGroup>
 

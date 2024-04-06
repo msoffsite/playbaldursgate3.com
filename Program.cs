@@ -4,12 +4,14 @@ using EclecticXnet.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddRazorPages();
+builder.Services
+    .AddRazorPages();
 
 builder.Services.Configure<GoogleSettings>(builder.Configuration.GetSection("Google"));
 
-builder.Services.AddScoped<IPlayListService, PlayListService>();
-builder.Services.AddScoped<IVideoService, VideoService>();
+builder.Services
+    .AddScoped<IPlayListService, PlayListService>()
+    .AddScoped<IVideoService, VideoService>();
 
 var app = builder.Build();
 
