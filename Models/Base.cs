@@ -1,6 +1,6 @@
 ﻿namespace EclecticXnet.Models
 {
-	internal class Base
+	public class Base
 	{
 		public required string Id { get; set; } 
 		public required string Title { get; set; }

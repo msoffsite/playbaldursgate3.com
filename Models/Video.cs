@@ -1,4 +1,4 @@
 ﻿namespace EclecticXnet.Models
 {
-	internal class Video : Base { }
+	public class Video : Base { }
 }
