@@ -2,6 +2,6 @@
 {
 	internal class Playlist : Base
 	{
-		internal List<Video> Videos { get; set; }
+		internal List<Video> Videos { get; set; } = new List<Video>();
 	}
 }

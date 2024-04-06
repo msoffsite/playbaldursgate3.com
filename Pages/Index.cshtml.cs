@@ -58,7 +58,7 @@ namespace EclecticXnet.Pages
 						{
 							var videoSnippet = responsePlayListVideo.Snippet;
 
-							if (videoSnippet.Thumbnails.Maxres != null)
+							try
 							{
 								var playListVideo = new EclecticVideo
 								{
@@ -73,23 +73,34 @@ namespace EclecticXnet.Pages
 									playListVideos.Add(playListVideo);
 								}
 							}
+							catch (NullReferenceException)
+							{
+								// ignore if any property is null
+							}
 						}
 
 						nextPageToken = responsePlayListVideos.NextPageToken;
 					}
 
-					EclecticPlayList eclecticPlayList = new EclecticPlayList
+					try
 					{
-						Id = playListId,
-						Title = playListResult.Snippet.Title,
-						Description = playListResult.Snippet.Description,
-						ThumbnailUrl = playListResult.Snippet.Thumbnails.Maxres.Url,
-						Videos = playListVideos
-					};
+						EclecticPlayList eclecticPlayList = new EclecticPlayList
+						{
+							Id = playListId,
+							Title = playListResult.Snippet.Title,
+							Description = playListResult.Snippet.Description,
+							ThumbnailUrl = playListResult.Snippet.Thumbnails.Maxres.Url,
+							Videos = playListVideos
+						};
 
-					if (!eclecticPlaylists.Contains(eclecticPlayList))
+						if (!eclecticPlaylists.Contains(eclecticPlayList))
+						{
+							eclecticPlaylists.Add(eclecticPlayList);
+						}
+					}
+					catch (NullReferenceException)
 					{
-						eclecticPlaylists.Add(eclecticPlayList);
+						// ignore if any property is null
 					}
 				}
 			}
