@@ -11,7 +11,7 @@ namespace EclecticXnet.Pages
 		private readonly ILogger<IndexModel> _logger;
 		private readonly IPlayListService _playListService;
 
-		public List<EclecticPlayList> PlayLists { get; set; }
+		public List<EclecticPlayList> PlayLists { get; set; } = new List<EclecticPlayList>();
 
 
 		public IndexModel(ILogger<IndexModel> logger, IPlayListService playListService)

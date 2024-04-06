@@ -33,20 +33,21 @@ namespace EclecticXnet.Services
 			var responsePlaylists = await requestPlaylists.ExecuteAsync();
 			foreach (var playListResult in responsePlaylists.Items)
 			{
-				var playListId = playListResult.Id;
-				
+				var snippet = playListResult.Snippet;
+
 				try
 				{
 					EclecticPlayList eclecticPlayList = new EclecticPlayList
 					{
-						Id = playListId,
-						Title = playListResult.Snippet.Title,
-						Description = playListResult.Snippet.Description,
-						ThumbnailUrl = playListResult.Snippet.Thumbnails.Maxres.Url,
+						Id = playListResult.Id,
+						Title = snippet.Title,
+						Description = snippet.Description,
+						ThumbnailUrl = snippet.Thumbnails.Maxres.Url,
 						Videos = new List<Video>()
 					};
 
-					if (!eclecticPlaylists.Contains(eclecticPlayList))
+					if ((!eclecticPlaylists.Contains(eclecticPlayList)) &&
+						(snippet.Title.ToLowerInvariant().IndexOf("act") < 1))
 					{
 						eclecticPlaylists.Add(eclecticPlayList);
 					}
@@ -54,7 +55,9 @@ namespace EclecticXnet.Services
 				catch (NullReferenceException) {}
 			}
 
-			return eclecticPlaylists;
+            eclecticPlaylists = eclecticPlaylists.OrderBy(x => x.Title).ToList();
+
+            return eclecticPlaylists;
 		}
 	}
 }
