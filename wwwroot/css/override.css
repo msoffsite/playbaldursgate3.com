@@ -40,6 +40,10 @@ div[class^="playlist-"], div[class*=" playlist-"] {
     z-index: 99;
 }
 
+footer {
+    position: initial !important;
+}
+
 h3.header-playlist {
     margin: 0 0 20px 0;
 }
