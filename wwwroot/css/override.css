@@ -1,0 +1,45 @@
+﻿a {
+    text-decoration: none;
+    font-size: x-large;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+body {
+    font-size: large;
+}
+
+button {
+    border: 0;
+}
+
+.carousel-indicators, .carousel-control-next, .carousel-control-prev {
+    scale: 200%;
+}
+
+.carousel-control-next, .carousel-control-prev {
+    z-index: 5 !important;
+}
+
+.carousel-indicators {
+    background-color: rgba(0, 0, 0, .45);
+    padding: 4px;
+}
+
+div[class^="playlist-"], div[class*=" playlist-"] {
+    background-color: rgba(255, 255, 255, .95);
+    color: #000;
+    display: none;
+    /*display: flex;*/
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px;
+    width: 100%;
+    z-index: 99;
+}
+
+h3.header-playlist {
+    margin: 0 0 20px 0;
+}

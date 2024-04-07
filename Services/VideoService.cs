@@ -42,7 +42,7 @@ namespace EclecticXnet.Services
 					{
 						var playListVideo = new EclecticVideo
 						{
-							Id = responsePlayListVideo.Id,
+							Id = videoSnippet.ResourceId.VideoId,
 							Description = videoSnippet.Description,
 							ThumbnailUrl = videoSnippet.Thumbnails.Maxres.Url,
 							Title = responsePlayListVideo.Snippet.Title

@@ -1,7 +1,9 @@
 ﻿namespace EclecticXnet.Models
 {
 	public class Playlist : Base
-	{
-		internal List<Video> Videos { get; set; } = new List<Video>();
+    {
+        public string DescriptionTruncated { get; set; } = string.Empty;
+        public string HtmlTitle { get; set; } = string.Empty;
+		public List<Video> Videos { get; set; } = new List<Video>();
 	}
 }

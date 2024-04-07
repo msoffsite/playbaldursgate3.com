@@ -1,11 +1,47 @@
 ﻿@page
+@using System.Web
 @model EclecticXnet.Pages.IndexModel
 @{
     ViewData["Title"] = "Home page";
 }
 
+<header>
+    <nav class="navbar navbar-expand-lg navbar-toggleable-sm navbar-light bg-black mt-3 mb-3">
+        <div class="container justify-content-center">
+            @*<a class="navbar-brand" asp-area="" asp-page="/Index">EclecticXnet</a>*@
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="d-flex flex-grow-0">
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item">
+                        <a href="#" class="text-white title-description">
+                            <i class="fa-solid fa-circle-info fa-2xl" aria-hidden="true" title="Read title and description."></i>
+                        </a>
+                    </li>
+                    <li class="nav-item ms-3 me-3">
+                        &nbsp;
+                    </li>
+                    <li class="nav-item">
+                        <a id="watch_videos" class="text-white" href="/Videos/PLZVI5NEGw_A1p3ej3T_9HipoIVvVV0UmW">
+                            <i class="fa-solid fa-eye fa-2xl" aria-hidden="true" title="Watch playlist videos."></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<div class="text-start">
+    <p>
+        Welcome! Here you will find the featured playlists of Eclectic X that are on YouTube.
+    </p>
+</div>
+
 <div class="text-center">
-    <div id="carouselExampleCaptions" class="carousel slide carousel-fade">
+    <div id="playlist_carousel" class="carousel slide carousel-fade" data-bs-interval="false">
         <div class="carousel-indicators">
             @{
                 int buttonCounter = 1;
@@ -15,11 +51,11 @@
                     int backCounter = buttonCounter - 1;
                     if (buttonCounter == 1)
                     {
-                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide @buttonCounter"></button>
+                        <button type="button" data-bs-target="#playlist_carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide @buttonCounter"></button>
                     }
                     else
                     {
-                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="@backCounter" aria-label="Slide @buttonCounter"></button>
+                        <button type="button" data-bs-target="#playlist_carousel" data-bs-slide-to="@backCounter" aria-label="Slide @buttonCounter"></button>
                     }
 
                     buttonCounter++;
@@ -31,45 +67,59 @@
                 int counter = 1;
                 foreach (var playlist in Model.PlayLists)
                 {
+                    string playListId = playlist.Id;
                     string classes = counter == 1 ? "carousel-item active" : "carousel-item";
 
-                    string title = playlist.Title.ToUpperInvariant();
-
-                    string description = playlist.Description;
-                    int lengthMax = 75;
-                    if (description.Length > lengthMax)
-                    {
-                        description = description.Substring(0, lengthMax);
-                        int lastSpace = description.LastIndexOf(" ");
-                        description = description.Substring(0, lastSpace) + "...";
-                    }
-    
-                    <div class="@classes">
-                        <div class="position-absolute w-100 fa-10x mt-5 text-white-50" style="top: 50%; left: 50%; transform: translate(-50%, -50%);">
-                            @*<i class="fa-solid fa-circle-info" aria-hidden="true" title="Read description."></i>*@
-                            <i class="fa-solid fa-eye" aria-hidden="true" title="Watch playlist videos."></i>
-                        </div>
-                        <img src="@playlist.ThumbnailUrl" class="d-block w-100" alt="@title" title="@title">
-                        @*<div class="carousel-caption d-none d-md-block bg-white text-black">
-                            <h3>
-                                @title
+                    string title = playlist.Title;
+                    <div class="@classes d-flex justify-items-center align-items-center">
+                        <div class="playlist-id" data-playlist-id="@playListId"></div>
+                        <div class="playlist-title-description position-absolute">
+                            <div class="d-flex justify-content-end">
+                                <a href="#" class="hide_title_description text-black">
+                                    <i class="fa-solid fa-circle-xmark fa-2xl"></i>
+                                </a>
+                            </div>
+                            <h3 class="header-playlist">
+                                @Html.Raw(HttpUtility.HtmlDecode(playlist.HtmlTitle))
                             </h3>
-                            <p class="lead text-black">
-                                @description
+                            <p class="text-start">
+                                @playlist.DescriptionTruncated
                             </p>
-                        </div>*@
+                            <p class="text-center text-muted">
+                                (click <i class="fa-solid fa-circle-info" aria-hidden="true"></i> or <i class="fa-solid fa-circle-xmark"></i> to close)
+                            </p>
+                        </div>
+                        <a asp-page="Videos" asp-route-playListId="@playlist.Id">
+                            <img src="@playlist.ThumbnailUrl" class="d-block w-100" alt="@title" title="@title">
+                        </a>
                     </div>
                     counter++;
                 }
             }
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+        <button class="carousel-control-prev" type="button" data-bs-target="#playlist_carousel" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+        <button class="carousel-control-next" type="button" data-bs-target="#playlist_carousel" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
         </button>
     </div>
 </div>
+<div class="text-start mt-3 border-bottom">
+    <p>
+        Operate the slider by clicking the right arrow to go forward, the left arrow to go backward. You can also click the thin boxes at the bottom to go to a different slide.
+    </p>
+    <p>
+        To learn more about a playlist, click the <i class="fa-solid fa-circle-info" aria-hidden="true"></i> at the top of the page.
+    </p>
+    <p>
+        To see the videos of a playlist, click the <i class="fa-solid fa-eye" aria-hidden="true"></i> at the top of the page or anywhere in the middle of the image.
+    </p>
+</div>
+@section Scripts
+{
+    <script type="text/javascript" src="~/js/view-index.js"></script>
+}
+

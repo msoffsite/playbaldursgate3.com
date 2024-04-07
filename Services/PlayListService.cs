@@ -1,7 +1,10 @@
 ﻿using EclecticXnet.Models;
 using Google.Apis.YouTube.v3;
+using Google.Apis.YouTube.v3.Data;
 using Microsoft.Extensions.Options;
+
 using EclecticPlayList = EclecticXnet.Models.Playlist;
+using EclecticVideo = EclecticXnet.Models.Video;
 
 namespace EclecticXnet.Services
 {
@@ -34,16 +37,41 @@ namespace EclecticXnet.Services
 			foreach (var playListResult in responsePlaylists.Items)
 			{
 				var snippet = playListResult.Snippet;
+                var description = snippet.Description;
 
-				try
+                if (description.IndexOf("{featured-playlist}") < 1)
+                {
+					continue;
+                }
+
+                description = description.Replace("{featured-playlist}", string.Empty);
+
+                string title = snippet.Title.ToUpperInvariant();
+                title = title.Replace("ECLECTIC X * ", string.Empty);
+                title = title.Replace("ECLECTIC X", string.Empty);
+                title = title.Trim();
+				string htmlTitle = title.Replace("*", "<br />");
+
+                string truncatedDescription = description;
+                int lengthMax = 500;
+                if (truncatedDescription.Length > lengthMax)
+                {
+                    truncatedDescription = truncatedDescription.Substring(0, lengthMax);
+                    int lastSpace = truncatedDescription.LastIndexOf(" ");
+                    truncatedDescription = truncatedDescription.Substring(0, lastSpace) + "...";
+                }
+
+                try
 				{
 					EclecticPlayList eclecticPlayList = new EclecticPlayList
 					{
 						Id = playListResult.Id,
-						Title = snippet.Title,
-						Description = snippet.Description,
+						Title = title,
+						HtmlTitle = htmlTitle,
+						Description = description,
+						DescriptionTruncated = truncatedDescription,
 						ThumbnailUrl = snippet.Thumbnails.Maxres.Url,
-						Videos = new List<Video>()
+						Videos = new List<EclecticVideo>()
 					};
 
 					if ((!eclecticPlaylists.Contains(eclecticPlayList)) &&
@@ -59,5 +87,12 @@ namespace EclecticXnet.Services
 
             return eclecticPlaylists;
 		}
-	}
+
+        public async Task<EclecticPlayList> GetPlaylistById(string playListId)
+        {
+            var eclecticPlaylists = await GetPlaylists();
+			EclecticPlayList eclecticPlaylist = eclecticPlaylists.FirstOrDefault(x => x.Id == playListId);
+			return eclecticPlaylist;
+        }
+    }
 }

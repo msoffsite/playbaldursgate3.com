@@ -1,0 +1,52 @@
+﻿@page "{playListId}"
+@model EclecticXnet.Pages.VideosModel
+@{
+    ViewData["Title"] = $"{Model.PlayList.Title} Videos";
+}
+
+<header>
+    <nav class="navbar navbar-expand-lg navbar-toggleable-sm navbar-light bg-black mt-3 mb-3">
+        <div class="container justify-content-center">
+            @*<a class="navbar-brand" asp-area="" asp-page="/Index">EclecticXnet</a>*@
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="d-flex flex-grow-0">
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item">
+                        <a class="text-white" asp-page="/Index">
+                            <i class="fa-solid fa-house fa-2xl" aria-hidden="true" title="Return to home page."></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 mt-3">
+            @Model.PlayList.Title
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 mt-3">
+            @Model.PlayList.DescriptionTruncated
+        </div>
+    </div>
+    @{
+        foreach (var video in Model.Videos)
+        {
+            <div class="row">
+                <div class="col-12 mt-3 mb-3">
+                    <div class="ratio ratio-16x9">
+                        <iframe class="border" src="https://www.youtube.com/embed/@video.Id?start=14" title="@video.Title" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</div>
+
