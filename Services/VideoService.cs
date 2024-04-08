@@ -1,5 +1,6 @@
 ﻿using EclecticXnet.Models;
 using Google.Apis.YouTube.v3;
+using Google.Apis.YouTube.v3.Data;
 using Microsoft.Extensions.Options;
 
 using EclecticVideo = EclecticXnet.Models.Video;
@@ -23,22 +24,28 @@ namespace EclecticXnet.Services
 				ApplicationName = _googleSettings.Value.AppName
 			});
 
-			List<EclecticVideo> playListVideos = new List<EclecticVideo>();
+			var playListVideos = new List<EclecticVideo>();
 
 			var nextPageToken = string.Empty;
 			while (nextPageToken != null)
 			{
-				var requestPlayListVideos = youtubeService.PlaylistItems.List("snippet");
+				PlaylistItemsResource.ListRequest? requestPlayListVideos = youtubeService.PlaylistItems.List("snippet");
 				requestPlayListVideos.PlaylistId = playListId;
 				requestPlayListVideos.MaxResults = int.MaxValue;
 				requestPlayListVideos.PageToken = nextPageToken;
 
-				var responsePlayListVideos = await requestPlayListVideos.ExecuteAsync();
-				foreach (var responsePlayListVideo in responsePlayListVideos.Items)
+				PlaylistItemListResponse? responsePlayListVideos = await requestPlayListVideos.ExecuteAsync();
+				
+                foreach (PlaylistItem? responsePlayListVideo in responsePlayListVideos.Items)
 				{
-					var videoSnippet = responsePlayListVideo.Snippet;
+					PlaylistItemSnippet? videoSnippet = responsePlayListVideo.Snippet;
 
-					try
+                    if (videoSnippet.Title.Equals("private video", StringComparison.InvariantCultureIgnoreCase))
+                    {
+                        continue;
+                    }
+					
+                    try
 					{
 						var playListVideo = new EclecticVideo
 						{

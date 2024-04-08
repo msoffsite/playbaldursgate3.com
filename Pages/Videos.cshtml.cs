@@ -1,5 +1,5 @@
+using System.Text;
 using EclecticXnet.Services;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 using EclecticPlaylist = EclecticXnet.Models.Playlist;
@@ -14,10 +14,12 @@ namespace EclecticXnet.Pages
         private readonly IPlayListService _playListService;
         private readonly IVideoService _videoService;
 
-        public EclecticPlaylist PlayList { get; set; } = null;
-        public List<EclecticVideo> Videos { get; set; } = new List<EclecticVideo>();
+        public EclecticPlaylist PlayList { get; set; }
+        public List<EclecticVideo> Videos { get; set; }
 
-        public string PlayListId { get; set; }
+        public string HtmlForOtherPlayListLinks;
+
+        public string PlayListId { get; set; } = null!;
 
         public VideosModel(ILogger<IndexModel> logger, IPlayListService playListService, IVideoService videoService)
         {
@@ -28,7 +30,28 @@ namespace EclecticXnet.Pages
 
         public void OnGet(string playListId)
         {
-            PlayList = _playListService.GetPlaylistById(playListId).Result;
+            List<EclecticPlaylist> playLists = _playListService.GetPlayLists().Result;
+            
+            StringBuilder buildHtmlForOtherPlayListLinks = new();
+
+            buildHtmlForOtherPlayListLinks.Append("<div class=\"list-group\">");
+
+            foreach (EclecticPlaylist playlist in playLists)
+            {
+                if (playlist.Id.Equals(playListId, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    continue;
+                }
+
+                var playListLink = $"<a class=\"list-group-item list-group-item-action\" href=\"/Videos/{playlist.Id}\" title=\"{playlist.DescriptionTruncated}\">{playlist.Title}</a>";
+                buildHtmlForOtherPlayListLinks.Append(playListLink);
+            }
+
+            buildHtmlForOtherPlayListLinks.Append("</div>");
+            
+            HtmlForOtherPlayListLinks = buildHtmlForOtherPlayListLinks.ToString();
+            
+            PlayList = playLists.First(x => x.Id == playListId);
             List<EclecticVideo> playListVideos = _videoService.GetVideosForPlayListId(playListId).Result;
             Videos = playListVideos;
         }

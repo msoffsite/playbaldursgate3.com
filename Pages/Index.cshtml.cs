@@ -1,5 +1,4 @@
 using EclecticXnet.Services;
-using Google.Apis.YouTube.v3;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 using EclecticPlayList = EclecticXnet.Models.Playlist;
@@ -22,7 +21,7 @@ namespace EclecticXnet.Pages
 
 		public void OnGet()
 		{
-			List<EclecticPlayList> playListServiceResult = _playListService.GetPlaylists().Result;
+			List<EclecticPlayList> playListServiceResult = _playListService.GetPlayLists().Result;
 			PlayLists = playListServiceResult;
 		}
 	}
