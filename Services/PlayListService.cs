@@ -1,13 +1,12 @@
-﻿using EclecticXnet.Models;
+﻿using PlayBaldursGate3.Models;
 using Google.Apis.YouTube.v3;
 using Google.Apis.YouTube.v3.Data;
 using Microsoft.Extensions.Options;
 
-using EclecticPlayList = EclecticXnet.Models.Playlist;
-using EclecticVideo = EclecticXnet.Models.Video;
+using EclecticPlayList = PlayBaldursGate3.Models.Playlist;
 using Playlist = Google.Apis.YouTube.v3.Data.Playlist;
 
-namespace EclecticXnet.Services
+namespace PlayBaldursGate3.Services
 {
 	public class PlayListService : IPlayListService
 	{

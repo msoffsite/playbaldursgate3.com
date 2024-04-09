@@ -1,6 +1,6 @@
-﻿using EclecticXnet.Models;
+﻿using PlayBaldursGate3.Models;
 
-namespace EclecticXnet.Services
+namespace PlayBaldursGate3.Services
 {
 	public interface IVideoService
 	{

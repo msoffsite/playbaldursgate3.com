@@ -1,11 +1,11 @@
-﻿using EclecticXnet.Models;
+﻿using PlayBaldursGate3.Models;
 using Google.Apis.YouTube.v3;
 using Google.Apis.YouTube.v3.Data;
 using Microsoft.Extensions.Options;
 
-using EclecticVideo = EclecticXnet.Models.Video;
+using EclecticVideo = PlayBaldursGate3.Models.Video;
 
-namespace EclecticXnet.Services
+namespace PlayBaldursGate3.Services
 {
 	public class VideoService : IVideoService
 	{

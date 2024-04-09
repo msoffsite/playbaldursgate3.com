@@ -1,11 +1,11 @@
 using System.Text;
-using EclecticXnet.Services;
+using PlayBaldursGate3.Services;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-using EclecticPlaylist = EclecticXnet.Models.Playlist;
-using EclecticVideo = EclecticXnet.Models.Video;
+using EclecticPlaylist = PlayBaldursGate3.Models.Playlist;
+using EclecticVideo = PlayBaldursGate3.Models.Video;
 
-namespace EclecticXnet.Pages
+namespace PlayBaldursGate3.Pages
 {
     public class VideosModel : PageModel
     {

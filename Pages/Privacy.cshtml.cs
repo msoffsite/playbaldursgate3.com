@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace EclecticXnet.Pages
+namespace PlayBaldursGate3.Pages
 {
 	public class PrivacyModel : PageModel
 	{

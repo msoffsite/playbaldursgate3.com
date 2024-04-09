@@ -1,9 +1,9 @@
-using EclecticXnet.Services;
+using PlayBaldursGate3.Services;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-using EclecticPlayList = EclecticXnet.Models.Playlist;
+using EclecticPlayList = PlayBaldursGate3.Models.Playlist;
 
-namespace EclecticXnet.Pages
+namespace PlayBaldursGate3.Pages
 {
 	public class IndexModel : PageModel
 	{

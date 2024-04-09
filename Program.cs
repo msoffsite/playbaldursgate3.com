@@ -1,5 +1,5 @@
-using EclecticXnet.Models;
-using EclecticXnet.Services;
+using PlayBaldursGate3.Models;
+using PlayBaldursGate3.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 

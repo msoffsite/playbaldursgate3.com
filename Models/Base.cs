@@ -1,4 +1,4 @@
-﻿namespace EclecticXnet.Models
+﻿namespace PlayBaldursGate3.Models
 {
 	public class Base
 	{
