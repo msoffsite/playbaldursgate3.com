@@ -63,15 +63,27 @@ namespace EclecticXnet.Services
                     truncatedDescription = truncatedDescription[..lastSpace] + "...";
                 }
 
+                string metaDescription = truncatedDescription;
+                metaDescription = metaDescription.Replace(Environment.NewLine, " ",
+                    StringComparison.InvariantCultureIgnoreCase);
+                lengthMax = 198;
+                if (metaDescription.Length > lengthMax)
+                {
+					metaDescription = metaDescription[..lengthMax];
+                    int lastSpace = metaDescription.LastIndexOf(" ", StringComparison.Ordinal);
+                    metaDescription = metaDescription[..lastSpace];
+                }
+
                 try
 				{
 					EclecticPlayList eclecticPlayList = new()
                     {
 						Id = playListResult.Id,
-						Title = title,
-						HtmlTitle = htmlTitle,
-						Description = description,
-						DescriptionTruncated = truncatedDescription,
+						Title = title.Trim(),
+						HtmlTitle = htmlTitle.Trim(),
+						Description = description.Trim(),
+						MetaDescription = metaDescription.Trim(),
+						DescriptionTruncated = truncatedDescription.Trim(),
 						ThumbnailUrl = snippet.Thumbnails.Maxres.Url,
 						Videos = new()
 					};

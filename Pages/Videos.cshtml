@@ -2,7 +2,20 @@
 @using System.Web
 @model EclecticXnet.Pages.VideosModel
 @{
-    ViewData["Title"] = $"{Model.PlayList.Title} Videos";
+    ViewData["Title"] = $"Play Baldur's Gate 3 - {Model.PlayList.Title} Videos";
+}
+
+@section MetaTags
+{
+    @{
+        <meta data-n-head="ssr" charset="utf-8">
+        <meta data-n-head="ssr" data-hid="description" name="description" content="@Model.PlayList.DescriptionTruncated.Trim() - Eclectic X.">
+        <meta data-n-head="ssr" name="twitter:title" content="Play Baldur's Gate 3 - @Model.PlayList.Title.Trim()">
+        <meta data-n-head="ssr" name="twitter:description" content="@Model.PlayList.MetaDescription - Eclectic X.">
+        <meta data-n-head="ssr" property="twitter:card" content="site">
+        <meta data-n-head="ssr" property="og:title" content="Play Baldur's Gate 3 - @Model.PlayList.Title.Trim()">
+        <meta data-n-head="ssr" property="og:description" content="@Model.PlayList.MetaDescription - Eclectic X.">
+    }
 }
 
 <header>
