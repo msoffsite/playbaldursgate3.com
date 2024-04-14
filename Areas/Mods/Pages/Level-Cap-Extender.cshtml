@@ -1,0 +1,557 @@
+﻿@page
+@model PlayBaldursGate3.Areas.Mods.Pages.Level_Cap_ExtenderModel
+@{
+    ViewData["Title"] = "Play Baldur's Gate 3 - Level Cap Extender Mod";
+}
+@section MetaTags
+{
+    <meta data-n-head="ssr" charset="utf-8">
+    <meta data-n-head="ssr" data-hid="description" name="description" content="Level Cap Extender, a mod for Baldur's Gate 3, extends the level cap by providing 5 options: doubled experience points requirements, tripled, quadrupled, quintupled, and sextupled. - Eclectic X.">
+    <meta data-n-head="ssr" name="twitter:title" content="Play Baldur's Gate 3 with Mods">
+    <meta data-n-head="ssr" name="twitter:description" content="Level Cap Extender, a mod for Baldur's Gate 3, extends the level cap by providing 5 options: doubled experience points requirements, tripled, quadrupled, quintupled, and sextupled. - Eclectic X.">
+    <meta data-n-head="ssr" property="twitter:card" content="site">
+    <meta data-n-head="ssr" property="og:title" content="Play Baldur's Gate 3 with Mods">
+    <meta data-n-head="ssr" property="og:description" content="Level Cap Extender, a mod for Baldur's Gate 3, extends the level cap by providing 5 options: doubled experience points requirements, tripled, quadrupled, quintupled, and sextupled. - Eclectic X.">
+}
+<header>
+    <nav class="navbar navbar-expand-lg navbar-toggleable-sm navbar-light bg-black mt-3 mb-3">
+        <div class="container justify-content-center">
+            @*<a class="navbar-brand" asp-area="" asp-page="/Index">EclecticXnet</a>*@
+            <div class="d-flex flex-grow-0">
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item">
+                        <a class="text-white" asp-page="/Index">
+                            <i class="fa-solid fa-house fa-2xl" aria-hidden="true" title="Return to home page."></i>
+                        </a>
+                    </li>
+                    <li class="nav-item ms-3 me-3 wide-screen-only">
+                        &nbsp;
+                    </li>
+                    <li class="nav-item">
+                        <a id="watch_videos" class="text-white" href="/Videos/PLZVI5NEGw_A1p3ej3T_9HipoIVvVV0UmW">
+                            <i class="fa-solid fa-eye fa-2xl" aria-hidden="true" title="Watch playlist videos."></i>
+                        </a>
+                    </li>
+                    <li class="nav-item ms-3 me-3 wide-screen-only">
+                        &nbsp;
+                    </li>
+                    <li class="nav-item">
+                        <a href="~/mods/level-cap-extender/LevelCapExtender.zip" title="Downlaod Level Cap Extender">
+                            <i class="fa-solid fa-download fa-2xl"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+<div class="container">
+    <div class="row mt-3">
+        <div class="col-12">
+            <h3 class="text-center">
+                Level Cap Extender - Baldur's Gate 3 Mod
+            </h3>
+        </div>
+    </div>
+    <div class="row mt-3 mb-3">
+        <div class="col-12">
+            <p>
+                Level Cap Extender, a Baldur's Gate 3 mod, extends the level cap by providing 5 options for increasing the level cap:
+            </p>
+            <ul>
+                <li>Doubled - 200,000 MAX XP</li>
+                <li>Tripled - 300,000 MAX XP</li>
+                <li>Quadrupled - 400,000 MAX XP</li>
+                <li>Quintupled - 500,000 MAX XP</li>
+                <li>Sextupled - 600,000 MAX XP</li>
+            </ul>
+            <p>
+                The higher the max XP, the more complete playthrough, the later you will level-cap. Quintupled will require almost every
+                quest with a few missed battles. You'll likely level cap shortly before the end battle. Sextupled will require every quest
+                and each battle. Even then, you may not level-cap. The most amount of XP I've tested is 582,000 XP.
+            </p>
+            <p>
+                Choose whichever option best fits your playing style!
+            </p>
+        </div>
+    </div>
+    <div class="row mt-3 mb-3">
+        <div class="col-12 mt-3 text-center">
+            <img src="~/mods/level-cap-extender/screenshot-800w.gif" class="img-fluid" title="Level Cap Extender Screenshot" alt="Level Cap Extender Screenshot" />
+        </div>
+    </div>
+    <div class="row mt-3 mb-3">
+        <div class="col-12 mt-3 text-center">
+            <p class="text-center">
+                <b>Simply download and unzip the compressed file then run LevelCapExtenderInstaller.msi.</b>
+            </p>
+        </div>
+    </div>
+    <div class="row mt-3 mb-3">
+        <div class="col-12 mt-3 text-center">
+            <a href="~/mods/level-cap-extender/LevelCapExtender.zip" title="Downlaod Level Cap Extender">
+                <i class="fa-solid fa-download fa-2xl"></i>
+            </a>
+        </div>
+    </div>
+    <div class="row mt-3 mb-3">
+        <div class="col-12 mt-3 text-center">
+            <h4 class="text-center">
+                Doubled Experience Table
+            </h4>
+        </div>
+        <div class="col-12">
+            <table class="table table-dark text-center">
+                <thead>
+                    <tr>
+                        <th scope="col">Level</th>
+                        <th scope="col">Level-Up XP</th>
+                        <th scope="col">Total XP</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>300</td>
+                        <td>300</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>700</td>
+                        <td>1,000</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>2,000</td>
+                        <td>3,000</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">4</th>
+                        <td>4,000</td>
+                        <td>7,000</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">5</th>
+                        <td>7,000</td>
+                        <td>14,000</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">6</th>
+                        <td>9,000</td>
+                        <td>23,000</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">7</th>
+                        <td>13,000</td>
+                        <td>36,000</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">8</th>
+                        <td>20,000</td>
+                        <td>56,000</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">9</th>
+                        <td>24,000</td>
+                        <td>80,000</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">10</th>
+                        <td>30,000</td>
+                        <td>110,000</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">11</th>
+                        <td>40,000</td>
+                        <td>150,000</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">12</th>
+                        <td>50,000</td>
+                        <td>200,000</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row mt-3 mb-3">
+        <div class="col-6 text-center">
+            <a href="#" class="go-to-top text-white">
+                <i class="fa-solid fa-jet-fighter-up fa-2xl" title="Click me for top of page."></i>
+            </a>
+        </div>
+        <div class="col-6 text-center">
+            <a href="~/mods/level-cap-extender/LevelCapExtender.zip" title="Downlaod Level Cap Extender">
+                <i class="fa-solid fa-download fa-2xl"></i>
+            </a>
+        </div>
+    </div>
+    <div class="row mt-3 mb-3">
+        <div class="col-12 mt-3 text-center">
+            <h4 class="text-center">
+                Tripled Experience Table
+            </h4>
+        </div>
+        <div class="col-12">
+            <table class="table table-dark text-center">
+                <thead>
+                    <tr>
+                        <th scope="col">Level</th>
+                        <th scope="col">Level-Up XP</th>
+                        <th scope="col">Total XP</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>300</td>
+                        <td>300</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>700</td>
+                        <td>1,000</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>2,000</td>
+                        <td>3,000</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">4</th>
+                        <td>4,000</td>
+                        <td>7,000</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">5</th>
+                        <td>10,000</td>
+                        <td>17,000</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">6</th>
+                        <td>16,000</td>
+                        <td>33,000</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">7</th>
+                        <td>24,000</td>
+                        <td>57,000</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">8</th>
+                        <td>28,000</td>
+                        <td>85,000</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">9</th>
+                        <td>32,000</td>
+                        <td>117,000</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">10</th>
+                        <td>40,000</td>
+                        <td>157,000</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">11</th>
+                        <td>60,000</td>
+                        <td>217,000</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">12</th>
+                        <td>83,000</td>
+                        <td>300,000</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row mt-3 mb-3">
+        <div class="col-6 text-center">
+            <a href="#" class="go-to-top text-white">
+                <i class="fa-solid fa-jet-fighter-up fa-2xl" title="Click me for top of page."></i>
+            </a>
+        </div>
+        <div class="col-6 text-center">
+            <a href="~/mods/level-cap-extender/LevelCapExtender.zip" title="Downlaod Level Cap Extender">
+                <i class="fa-solid fa-download fa-2xl"></i>
+            </a>
+        </div>
+    </div>
+    <div class="row mt-3 mb-3">
+        <div class="col-12 mt-3 text-center">
+            <h4 class="text-center">
+                Quadrupled Experience Table
+            </h4>
+        </div>
+        <div class="col-12">
+            <table class="table table-dark text-center">
+                <thead>
+                    <tr>
+                        <th scope="col">Level</th>
+                        <th scope="col">Level-Up XP</th>
+                        <th scope="col">Total XP</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>300</td>
+                        <td>300</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>700</td>
+                        <td>1,000</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>2,000</td>
+                        <td>3,000</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">4</th>
+                        <td>6,000</td>
+                        <td>9,000</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">5</th>
+                        <td>12,000</td>
+                        <td>21,000</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">6</th>
+                        <td>18,000</td>
+                        <td>39,000</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">7</th>
+                        <td>28,000</td>
+                        <td>67,000</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">8</th>
+                        <td>32,000</td>
+                        <td>99,000</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">9</th>
+                        <td>50,000</td>
+                        <td>149,000</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">10</th>
+                        <td>52,000</td>
+                        <td>201,000</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">11</th>
+                        <td>90,000</td>
+                        <td>291,000</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">12</th>
+                        <td>109,000</td>
+                        <td>400,000</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row mt-3 mb-3">
+        <div class="col-6 text-center">
+            <a href="#" class="go-to-top text-white">
+                <i class="fa-solid fa-jet-fighter-up fa-2xl" title="Click me for top of page."></i>
+            </a>
+        </div>
+        <div class="col-6 text-center">
+            <a href="~/mods/level-cap-extender/LevelCapExtender.zip" title="Downlaod Level Cap Extender">
+                <i class="fa-solid fa-download fa-2xl"></i>
+            </a>
+        </div>
+    </div>
+    <div class="row mt-3 mb-3">
+        <div class="col-12 mt-3 text-center">
+            <h4 class="text-center">
+                Quintupled Experience Table
+            </h4>
+        </div>
+        <div class="col-12">
+            <table class="table table-dark text-center">
+                <thead>
+                    <tr>
+                        <th scope="col">Level</th>
+                        <th scope="col">Level-Up XP</th>
+                        <th scope="col">Total XP</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>300</td>
+                        <td>300</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>700</td>
+                        <td>1,000</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>2,000</td>
+                        <td>3,000</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">4</th>
+                        <td>8,000</td>
+                        <td>11,000</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">5</th>
+                        <td>14,000</td>
+                        <td>25,000</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">6</th>
+                        <td>20,000</td>
+                        <td>45,000</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">7</th>
+                        <td>30,000</td>
+                        <td>75,000</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">8</th>
+                        <td>34,000</td>
+                        <td>109,000</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">9</th>
+                        <td>52,000</td>
+                        <td>161,000</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">10</th>
+                        <td>62,000</td>
+                        <td>223,000</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">11</th>
+                        <td>120,000</td>
+                        <td>343,000</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">12</th>
+                        <td>157,000</td>
+                        <td>500,000</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row mt-3 mb-3">
+        <div class="col-6 text-center">
+            <a href="#" class="go-to-top text-white">
+                <i class="fa-solid fa-jet-fighter-up fa-2xl" title="Click me for top of page."></i>
+            </a>
+        </div>
+        <div class="col-6 text-center">
+            <a href="~/mods/level-cap-extender/LevelCapExtender.zip" title="Downlaod Level Cap Extender">
+                <i class="fa-solid fa-download fa-2xl"></i>
+            </a>
+        </div>
+    </div>
+    <div class="row mt-3 mb-3">
+        <div class="col-12 mt-3 text-center">
+            <h4 class="text-center">
+                Sextupled Experience Table
+            </h4>
+        </div>
+        <div class="col-12">
+            <table class="table table-dark text-center">
+                <thead>
+                    <tr>
+                        <th scope="col">Level</th>
+                        <th scope="col">Level-Up XP</th>
+                        <th scope="col">Total XP</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>300</td>
+                        <td>300</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>700</td>
+                        <td>1,000</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>2,000</td>
+                        <td>3,000</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">4</th>
+                        <td>10,000</td>
+                        <td>13,000</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">5</th>
+                        <td>16,000</td>
+                        <td>29,000</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">6</th>
+                        <td>22,000</td>
+                        <td>51,000</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">7</th>
+                        <td>32,000</td>
+                        <td>83,000</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">8</th>
+                        <td>36,000</td>
+                        <td>119,000</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">9</th>
+                        <td>54,000</td>
+                        <td>173,000</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">10</th>
+                        <td>64,000</td>
+                        <td>237,000</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">11</th>
+                        <td>140,000</td>
+                        <td>377,000</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">12</th>
+                        <td>223,000</td>
+                        <td>600,000</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row mt-3 mb-3">
+        <div class="col-6 text-center">
+            <a href="#" class="go-to-top text-white">
+                <i class="fa-solid fa-jet-fighter-up fa-2xl" title="Click me for top of page."></i>
+            </a>
+        </div>
+        <div class="col-6 text-center">
+            <a href="~/mods/level-cap-extender/LevelCapExtender.zip" title="Downlaod Level Cap Extender">
+                <i class="fa-solid fa-download fa-2xl"></i>
+            </a>
+        </div>
+    </div>
+</div>
