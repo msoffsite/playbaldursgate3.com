@@ -9,6 +9,7 @@ a:hover {
 
 body {
     font-size: large;
+    color: #fff;
 }
 
 button {
@@ -39,12 +40,36 @@ div[class^="playlist-"], div[class*=" playlist-"] {
     z-index: 99;
 }
 
+.fa-3xl {
+    font-size: 3em;
+}
+
+.fa-4xl {
+    font-size: 4em;
+}
+
+.fa-5xl {
+    font-size: 5em;
+}
+
 footer {
     position: initial !important;
 }
 
+h1 {
+    margin: 0 0 20px 0;
+}
+
 h3.header-playlist {
     margin: 0 0 20px 0;
+}
+
+iframe {
+    padding-bottom: 1px;
+}
+
+.nav-item {
+    margin: 30px 30px 30px 30px !important;
 }
 
 @media only screen and (max-width: 770px) {
@@ -55,7 +80,7 @@ h3.header-playlist {
     body {
         font-size: small;
     }
-    
+
     .wide-screen-only {
         display: none;
     }
@@ -68,5 +93,13 @@ h3.header-playlist {
 
     body {
         font-size: medium;
+    }
+
+    .fa-4xl {
+        font-size: 2em;
+    }
+
+    .nav-item {
+        margin: 10px 10px 10px 10px !important;
     }
 }

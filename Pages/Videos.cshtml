@@ -25,16 +25,16 @@
             <div class="d-flex flex-grow-0">
                 <ul class="navbar-nav flex-grow-1">
                     <li class="nav-item">
-                        <a class="text-white" asp-page="/Index">
-                            <i class="fa-solid fa-house fa-2xl" aria-hidden="true" title="Return to home page."></i>
+                        <a asp-page="/Index">
+                            <i class="fa-solid fa-house fa-4xl" aria-hidden="true" title="Return to home page."></i>
                         </a>
                     </li>
                     <li class="nav-item ms-3 me-3 wide-screen-only">
                         &nbsp;
                     </li>
                     <li class="nav-item">
-                        <a asp-area="Mods" asp-page="Level-Cap-Extender" class="text-white">
-                            <i class="fa-solid fa-screwdriver-wrench fa-2xl" title="See the Level Cap Extender Mod!"></i>
+                        <a asp-area="Mods" asp-page="Level-Cap-Extender">
+                            <i class="fa-solid fa-screwdriver-wrench fa-4xl" title="See the Level Cap Extender Mod!"></i>
                         </a>
                     </li>
                 </ul>
@@ -46,7 +46,10 @@
 <div class="container">
     <div class="row">
         <div class="col-12 mt-3">
-            @Model.PlayList.Title
+            <h1 class="text-center text-uppercase">
+                @Html.Raw(HttpUtility.HtmlDecode(Model.PlayList.HtmlTitle))
+            </h1>
+            
         </div>
     </div>
     <div class="row">
@@ -64,7 +67,7 @@
             <div class="row">
                 <div class="col-12 mt-3 mb-3">
                     <div class="ratio ratio-16x9">
-                        <iframe class="border" src="https://www.youtube.com/embed/@video.Id?start=14" title="@video.Title" allowfullscreen></iframe>
+                        <iframe class="border" src="https://www.youtube.com/embed/@video.Id" title="@video.Title" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>
@@ -88,14 +91,20 @@
             </div>
             <div class="row">
                 <div class="col-12 mt-3 mb-3 text-center">
-                    <a href="#" class="go-to-top text-white">
-                        <i class="fa-solid fa-jet-fighter-up fa-2xl" title="Click me for top of page."></i>
+                    <a href="#" class="go-to-top">
+                        <i class="fa-solid fa-jet-fighter-up  fa-3xl" title="Click me for top of page."></i>
                     </a>
                 </div>
             </div>
         }
     }
+    <div class="row border-bottom">
+        <div class="col-12">
+            &nbsp;
+        </div>
+    </div>
 </div>
+
 @section Scripts
 {
     <script type="text/javascript" src="~/js/view-shared.js"></script>
