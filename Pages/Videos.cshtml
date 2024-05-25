@@ -3,6 +3,7 @@
 @model PlayBaldursGate3.Pages.VideosModel
 @{
     ViewData["Title"] = $"Play Baldur's Gate 3 - {Model.PlayList.Title} Videos";
+    bool is9x16 = Model.PlayList.Title.ToLowerInvariant().IndexOf("shorts") > -1;
 }
 
 @section MetaTags
@@ -49,7 +50,7 @@
             <h1 class="text-center text-uppercase">
                 @Html.Raw(HttpUtility.HtmlDecode(Model.PlayList.HtmlTitle))
             </h1>
-            
+
         </div>
     </div>
     <div class="row">
@@ -57,47 +58,62 @@
             @Model.PlayList.DescriptionTruncated
         </div>
     </div>
-    @{
-        foreach (var video in Model.Videos)
-        {
-            var accordionId = $"accordion_flush_{video.Id}";
-            var targetId = $"flush_collapse_{video.Id}";
-            var ariaLabeledBy = $"aria_label_{video.Id}";
+    <div class="row">
+        @{
+            var rowCount = 1;
+            foreach (var video in Model.Videos)
+            {
+                var accordionId = $"accordion_flush_{video.Id}";
+                var targetId = $"flush_collapse_{video.Id}";
+                var ariaLabeledBy = $"aria_label_{video.Id}";
 
-            <div class="row">
-                <div class="col-12 mt-3 mb-3">
-                    <div class="ratio ratio-16x9">
-                        <iframe class="border" src="https://www.youtube.com/embed/@video.Id" title="@video.Title" allowfullscreen></iframe>
+                // videos won't appear with interpolation
+                // due to height not calculated properly
+                if (!is9x16)
+                {
+                    <div class="col-12 mt-3 mb-3">
+                        <div class="ratio ratio-16x9">
+                            <iframe class="border" src="https://www.youtube.com/embed/@video.Id" title="@video.Title" allowfullscreen></iframe>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12 mb-3">
-                    <div class="accordion accordion-flush" id="accordion_flush_@video.Id">
-                        <div class="accordion-item text-black">
-                            <h2 class="accordion-header" id="@ariaLabeledBy">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#@targetId" aria-expanded="false" aria-controls="@targetId">
-                                    Click me to check out other playlists!
-                                </button>
-                            </h2>
-                            <div id="@targetId" class="accordion-collapse collapse" aria-labelledby="@ariaLabeledBy" data-bs-parent="#@accordionId">
-                                <div class="accordion-body">
-                                    @Html.Raw(HttpUtility.HtmlDecode(Model.HtmlForOtherPlayListLinks))
+                }
+                else
+                {
+                    <div class="col-sm-4 mt-3 mb-3">
+                        <div class="ratio ratio-9x16">
+                            <iframe class="border" src="https://www.youtube.com/embed/@video.Id" title="@video.Title" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                }
+
+                if (((is9x16) && (rowCount % 3 == 0)) || (!is9x16))
+                {
+                    <div class="col-12 mt-3 mb-3">
+                        <div class="accordion accordion-flush" id="accordion_flush_@video.Id">
+                            <div class="accordion-item text-black">
+                                <h2 class="accordion-header" id="@ariaLabeledBy">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#@targetId" aria-expanded="false" aria-controls="@targetId">
+                                        Click me to check out other playlists!
+                                    </button>
+                                </h2>
+                                <div id="@targetId" class="accordion-collapse collapse" aria-labelledby="@ariaLabeledBy" data-bs-parent="#@accordionId">
+                                    <div class="accordion-body">
+                                        @Html.Raw(HttpUtility.HtmlDecode(Model.HtmlForOtherPlayListLinks))
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12 mt-3 mb-3 text-center">
-                    <a href="#" class="go-to-top">
-                        <i class="fa-solid fa-jet-fighter-up  fa-3xl" title="Click me for top of page."></i>
-                    </a>
-                </div>
-            </div>
+                    <div class="col-12 mt-3 mb-3 text-center">
+                        <a href="#" class="go-to-top">
+                            <i class="fa-solid fa-jet-fighter-up  fa-3xl" title="Click me for top of page."></i>
+                        </a>
+                    </div>
+                }
+                rowCount++;
+            }
         }
-    }
+    </div>
     <div class="row border-bottom">
         <div class="col-12">
             &nbsp;

@@ -17,7 +17,7 @@ button {
 }
 
 .carousel-indicators, .carousel-control-next, .carousel-control-prev {
-    scale: 200%;
+    scale: 100%;
 }
 
 .carousel-control-next, .carousel-control-prev {
@@ -54,6 +54,7 @@ div[class^="playlist-"], div[class*=" playlist-"] {
 
 footer {
     position: initial !important;
+    margin-bottom: 30px;
 }
 
 h1 {
@@ -65,11 +66,15 @@ h3.header-playlist {
 }
 
 iframe {
-    padding-bottom: 1px;
+    padding: 0 1px 1px 0;
 }
 
 .nav-item {
     margin: 30px 30px 30px 30px !important;
+}
+
+.ratio-9x16 {
+    --bs-aspect-ratio: calc(16 / 9 * 100%);
 }
 
 @media only screen and (max-width: 770px) {

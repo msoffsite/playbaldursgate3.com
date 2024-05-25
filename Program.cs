@@ -11,7 +11,9 @@ builder.Services.Configure<GoogleSettings>(builder.Configuration.GetSection("Goo
 
 builder.Services
     .AddScoped<IPlayListService, PlayListService>()
-    .AddScoped<IVideoService, VideoService>();
+    .AddScoped<IVideoService, VideoService>()
+    .AddRazorPages()
+    .AddRazorRuntimeCompilation();
 
 var app = builder.Build();
 
